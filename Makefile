@@ -16,10 +16,10 @@ package:
 	cd $(LAMBDA_FOLDER) && zip -r -D ../$(PACKAGE_FILE) *
 
 dependencies:
-	cd venv/lib/python3.12/site-packages && zip -r ../../../../$(PACKAGE_FILE) .
+	cd venv/lib/python3.11/site-packages && zip -r ../../../../$(PACKAGE_FILE) .
 
 # Upload the package to S3
-upload: package
+upload: 
 	aws lambda update-function-code \
     --function-name  $(LAMBDA_NAME) \
     --zip-file fileb://test-lambda.zip

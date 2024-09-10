@@ -61,11 +61,16 @@ data "aws_iam_policy_document" "lambda_logging" {
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
+        "dynamodb:Scan",
+        "dynamodb:DeleteItem",
+        "dynamodb:PutItem",
+        "dynamodb:BatchWriteItem"
     ]
 
     resources = [
         "${aws_s3_bucket.dynamo_raw_data_bucket.arn}/*",
-        "arn:aws:logs:*:*:*"
+        "arn:aws:logs:*:*:*",
+        "${aws_dynamodb_table.example_table.arn}"
         ]
   }
 }
